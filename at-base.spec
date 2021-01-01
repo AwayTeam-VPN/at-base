@@ -23,8 +23,8 @@ Summary:        AwayTeam VPN Server
 License:        GPL3
 URL:            https://github.com/AwayTeam-VPN/at-base
 Source0:        %{name}-%{version}.tar.xz
-BuildRequires:  python3
-Requires:       python3-flask strongswan firewalld
+#BuildRequires:  python3
+Requires:       python3 python3-flask strongswan firewalld
 BuildArch:      noarch
 
 %description
@@ -43,5 +43,4 @@ AwayTeam VPN Server with dynamic firewall and IPSec
 %files
 
 %changelog
-
 
