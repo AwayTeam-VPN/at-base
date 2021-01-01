@@ -31,7 +31,7 @@ BuildArch:      noarch
 AwayTeam VPN Server with dynamic firewall and IPSec
 
 %prep
-%setup -q -n %{name}-%{name}-%{version}
+%setup -q -n %{name}-%{version}
 
 %build
 %python3_build
