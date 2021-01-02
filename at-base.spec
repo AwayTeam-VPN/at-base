@@ -15,6 +15,10 @@
 # Please submit bugfixes or comments via https://bugs.opensuse.org/
 #
 
+%if ! %{defined _fillupdir}
+  %define _fillupdir %{_localstatedir}/adm/fillup-templates
+%endif
+
 Name:           at-base
 Version:        0.1
 Release:        0
@@ -37,6 +41,8 @@ AwayTeam VPN Server with dynamic firewall and IPSec
 
 %install
 #install -D -m 644 %{SOURCE0} %{buildroot}%{_unitdir}/at-base.service
+%{_bindir}/install -c -D -m 600 %{buildroot}%{_sysconfdir}/sysconfig/at-base %{buildroot}%{_fillupdir}/sysconfig.%{name}
+rm %{buildroot}%{_sysconfdir}/sysconfig/at-base
 
 %pre
 %service_add_pre at-base.service
@@ -50,6 +56,7 @@ AwayTeam VPN Server with dynamic firewall and IPSec
 %files
 %doc README
 %license COPYING
+%dir %{_datadir}/firewalld
 %config(noreplace) %{_sysconfdir}/at-base/at-base.conf
 %{_unitdir}/at-base.service
 
