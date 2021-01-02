@@ -15,15 +15,14 @@
 # Please submit bugfixes or comments via https://bugs.opensuse.org/
 #
 
-
 Name:           at-base
 Version:        0.1
 Release:        0
 Summary:        AwayTeam VPN Server
-License:        GPL3
+License:        GPLv3+
 URL:            https://github.com/AwayTeam-VPN/at-base
 Source0:        %{name}-%{version}.tar.xz
-#BuildRequires:  python3
+BuildRequires:  systemd-rpm-macros
 Requires:       python3 python3-flask strongswan firewalld
 BuildArch:      noarch
 
@@ -31,16 +30,18 @@ BuildArch:      noarch
 AwayTeam VPN Server with dynamic firewall and IPSec
 
 %prep
-%setup -q -n %{name}-%{version}
 
 %build
-%python3_build
 
 %check
 
 %install
+install -D -m 644 %{SOURCE0} %{buildroot}%{_unitdir}/at-base.service
 
 %files
+
+%post
+%service_add_post at-base.service
 
 %changelog
 
