@@ -36,12 +36,22 @@ AwayTeam VPN Server with dynamic firewall and IPSec
 %check
 
 %install
-install -D -m 644 %{SOURCE0} %{buildroot}%{_unitdir}/at-base.service
+#install -D -m 644 %{SOURCE0} %{buildroot}%{_unitdir}/at-base.service
 
-%files
+%pre
+%service_add_pre at-base.service
 
 %post
 %service_add_post at-base.service
+
+%preun
+%service_del_preun at-base.service
+
+%files
+%doc README
+%license COPYING
+%config(noreplace) %{_sysconfdir}/at-base/at-base.conf
+%{_unitdir}/at-base.service
 
 %changelog
 
