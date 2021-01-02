@@ -1,8 +1,0 @@
-[Unit]
-Description=Away-Team VPN Server
-
-[Service]
-ExecStart=/usr/sbin/AT/at-base.py
-
-[Install]
-WantedBy=multi-user.target
