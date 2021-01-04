@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="ScreeOrientation" content="autoRotate:disabled">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+   <title>{{ title }} - AwayTeam</title>
+   <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
+   </head>
+<body>
+  <div class="page" style="width: 100%; height:100%;">
+  <div class="header">
+    <a href="/">
+        <h1 style="text-align: right;">(C)Loud</h1>
+        <img class="logo" src="{{ url_for('static',filename='images/icon.png') }}"/>
+        <h1 style="text-align: left;">Speaker</h1>
+    </a>
+  </div>
+  <div class="volume">
+    <input type="range" name="volume_slider" id="volume_range" min="70" max="100" value="{{vol_level}}" orient="vertical"/>
+  </div>
+
+  <div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'Radio')" id="defaultOpen"><img src="{{ url_for('static',filename='images/radio_icon.png') }}"/></button>
+    <button class="tablinks" onclick="openCity(event, 'MP3')"><img src="{{ url_for('static',filename='images/mp3_icon.png') }}"/></button>
+    <button class="tablinks" onclick="openCity(event, 'Mediathek')"><img src="{{ url_for('static',filename='images/dlna_icon.png') }}"/></button>
+    <button class="tablinks" onclick="openCity(event, 'AirPlay')"><img src="{{ url_for('static',filename='images/airplay_icon.png') }}"/></button>
+  </div>
+</body>
+</html>
+
