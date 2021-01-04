@@ -28,19 +28,23 @@ URL:            https://github.com/AwayTeam-VPN/at-base
 Source0:        %{name}-%{version}.tar.xz
 BuildRequires:  systemd-rpm-macros
 Requires:       python3 python3-flask strongswan firewalld
+Requires(post): %fillup_prereq
 BuildArch:      noarch
+%{?systemd_requires}
 
 %description
 AwayTeam VPN Server with dynamic firewall and IPSec
 
 %prep
+%autosetup -n %{name}-%{version}
 
 %build
+%py3_build
 
 %check
 
 %install
-#install -D -m 644 %{SOURCE0} %{buildroot}%{_unitdir}/at-base.service
+%py3_install
 %{_bindir}/install -c -D -m 600 %{buildroot}%{_sysconfdir}/sysconfig/at-base %{buildroot}%{_fillupdir}/sysconfig.%{name}
 rm %{buildroot}%{_sysconfdir}/sysconfig/at-base
 
@@ -55,7 +59,7 @@ rm %{buildroot}%{_sysconfdir}/sysconfig/at-base
 
 %files
 %doc README
-%license COPYING
+%license LICENSE
 %dir %{_datadir}/firewalld
 %config(noreplace) %{_sysconfdir}/at-base/at-base.conf
 %{_unitdir}/at-base.service

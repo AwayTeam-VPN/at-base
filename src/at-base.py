@@ -1,20 +1,18 @@
 #!/usr/bin/env python3
-from flask import Flask, render_template, request, redirect, url_for
-from flask_cors import CORS, cross_origin
+from flask import Flask, render_template
 
 ## FLASK ##
-app = Flask(__name__, host_matching=True, static_host=domain["at-base"])
-app.config['CORS_HEADERS'] = 'Content-Type'
-cors = CORS(app)
+app = Flask(__name__, template_folder='templates')
 
-@app.route('/', host=domain["at-base"])
+@app.route("/")
 def index():
-    return render_template('index.html')
+    title = "Base"
+    return render_template("base.html", title = title)
 
 #TEST ENVIRONMENT
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=80, debug=True)
+    app.run(host="0.0.0.0", port=1706, debug=True)
 
 
 #PRODUCTIVE ENVIRONMENT

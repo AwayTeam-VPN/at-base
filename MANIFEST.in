@@ -1,0 +1,4 @@
+include src/at-base.db
+graft src/static
+graft src/templates
+global-exclude *.pyc
